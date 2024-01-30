@@ -1,6 +1,6 @@
-# Template Plugin NG
+# Combat Music Fix NG
 
-SKSE plugin template using [CommonLibSSE NG](https://github.com/alandtse/CommonLibVR/tree/ng)
+Simple SKSE plugin to fix the never-ending combat music bug. Compatible with multiple game runtimes, using [CommonLibSSE NG](https://github.com/alandtse/CommonLibVR/tree/ng)
 
 ## Requirements
 
@@ -22,7 +22,7 @@ SKSE plugin template using [CommonLibSSE NG](https://github.com/alandtse/CommonL
 Open terminal (e.g., PowerShell) and run the following commands:
 
 ```
-git clone --recurse-submodules -j4 https://github.com/gabriel-andreescu/TemplatePluginNG.git
-cd TemplatePluginNG
+git clone --recurse-submodules -j4 https://github.com/gabriel-andreescu/CombatMusicFixNG.git
+cd CombatMusicFixNG
 .\BuildRelease.bat
 ```

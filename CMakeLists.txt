@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 3.27)
 
 project(
-        TemplatePluginNG
-        VERSION 1.0.0
+        CombatMusicFixNG
+        VERSION 1.1.0
         LANGUAGES CXX
 )
 
