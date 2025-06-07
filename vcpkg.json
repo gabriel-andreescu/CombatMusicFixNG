@@ -1,14 +1,18 @@
 {
+  "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg.schema.json",
   "name": "combatmusicfixng",
-  "version-semver": "1.1.0",
-  "description": "",
+  "version-semver": "1.2.0",
   "license": "GPL-3.0",
+  "features": {
+    "commonlibsse-ng": {
+      "description": "Dependencies of clib-ng",
+      "dependencies": ["catch2", "fmt", "directxtk", "rapidcsv", "spdlog"]
+    }
+  },
   "dependencies": [
-    "spdlog",
-    "directxtk",
-    "catch2",
     "xbyak",
-    "rapidcsv"
+    "simpleini"
   ],
+  "default-features": ["commonlibsse-ng"],
   "builtin-baseline": "7032c5759f823fc8699a5c37d5f7072464ccb9a8"
 }

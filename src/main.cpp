@@ -1,33 +1,30 @@
 #include "Utils.h"
+#include "Config.h"
 
 class CombatMusicFix
 {
-	static inline const std::vector<std::string> stopCombatMusic = {
-		"removemusic MUScombat",
-		"removemusic MUScombatCivilWar",
-		"removemusic MUScombatBossUmbra",
-		"removemusic MUScombatBossDLC1",
-		"removemusic MUScombatBossChargen",
-		"removemusic MUScombatBoss",
-		"removemusic DLC2MUScombatKarstaag",
-		"removemusic DLC2MUScombatBoss",
-	};
+	static constexpr auto kFixDelay = std::chrono::seconds(5);
 
 public:
-	static void fix()
+	static void StopCombatTracks()
 	{
-		auto asyncFunc = []() {
-			std::this_thread::sleep_for(std::chrono::seconds(5));
-			for (const auto& command : stopCombatMusic) {
-				inlineUtils::sendConsoleCommand(command);
+		std::thread([] {
+			std::this_thread::sleep_for(kFixDelay);
+			for (const auto& command : Config::stopCommands) {
+				logger::info("Sending command: {}", command);
+				inlineUtils::sendConsoleCommand(std::string(command));
 			}
-		};
-		std::jthread t(asyncFunc);
-		t.detach();
+		}).detach();
 	}
 };
 
-class EventSink : public RE::BSTEventSink<RE::TESDeathEvent>
+inline bool IsPlayerInCombat()
+{
+	const auto* player = RE::PlayerCharacter::GetSingleton();
+	return player && player->IsInCombat();
+}
+
+class EventSink final : public RE::BSTEventSink<RE::TESDeathEvent>
 {
 	EventSink() = default;
 
@@ -37,7 +34,7 @@ public:
 	EventSink& operator=(const EventSink&) = delete;
 	EventSink& operator=(EventSink&&) = delete;
 
-	static EventSink* GetSingleton()
+	static EventSink* GetSingleton() noexcept
 	{
 		static EventSink singleton;
 		return &singleton;
@@ -45,10 +42,9 @@ public:
 
 	RE::BSEventNotifyControl ProcessEvent(const RE::TESDeathEvent* event, RE::BSTEventSource<RE::TESDeathEvent>*) override
 	{
-		if (auto playerCharacter = RE::PlayerCharacter::GetSingleton(); event && !playerCharacter->IsInCombat()) {
-			CombatMusicFix::fix();
+		if (event && event->actorDying && !IsPlayerInCombat()) {
+			CombatMusicFix::StopCombatTracks();
 		}
-
 		return RE::BSEventNotifyControl::kContinue;
 	}
 };
@@ -56,23 +52,17 @@ public:
 // ReSharper disable once CppParameterMayBeConstPtrOrRef
 void MessageHandler(SKSE::MessagingInterface::Message* a_message)
 {
-	// ReSharper disable once CppDefaultCaseNotHandledInSwitchStatement
-	switch (a_message->type) {
-	case SKSE::MessagingInterface::kPostLoadGame:
-		auto playerCharacter = RE::PlayerCharacter::GetSingleton();
-		if (playerCharacter && !playerCharacter->IsInCombat()) {
-			CombatMusicFix::fix();
-		}
-		break;
+	if (a_message->type == SKSE::MessagingInterface::kPostLoadGame && !IsPlayerInCombat()) {
+		CombatMusicFix::StopCombatTracks();
 	}
 }
 
-extern "C" DLLEXPORT constinit auto SKSEPlugin_Version = []() noexcept {
-	SKSE::PluginVersionData v;
+extern "C" DLLEXPORT constinit SKSE::PluginVersionData SKSEPlugin_Version = []() noexcept {
+	SKSE::PluginVersionData v{};
 	v.PluginName(Plugin::NAME.data());
 	v.PluginVersion(Plugin::VERSION);
-	v.UsesAddressLibrary(true);
-	v.HasNoStructUse();
+	v.UsesAddressLibrary();
+	v.UsesNoStructs();
 	return v;
 }();
 
@@ -93,34 +83,27 @@ void InitializeLog()
 
 	*path /= Plugin::NAME;
 	*path += ".log";
+
 	auto sink = std::make_shared<spdlog::sinks::basic_file_sink_mt>(path->string(), true);
-
 	auto log = std::make_shared<spdlog::logger>("global log", std::move(sink));
-
 	log->set_level(spdlog::level::info);
 	log->flush_on(spdlog::level::info);
-
 	set_default_logger(std::move(log));
-	spdlog::set_pattern("[%H:%M:%S:%e] %v");
 
+	spdlog::set_pattern("[%H:%M:%S:%e] %v");
 	logger::info(FMT_STRING("{} v{}"), Plugin::NAME, Plugin::VERSION);
 }
 
 extern "C" DLLEXPORT bool SKSEAPI SKSEPlugin_Load(const SKSE::LoadInterface* a_skse)
 {
 	InitializeLog();
-
-	logger::info("Game version : {}", a_skse->RuntimeVersion().string());
+	logger::info("Game version: {}", a_skse->RuntimeVersion().string());
 
 	Init(a_skse);
+	Config::Load();
 
-	auto* eventSink = EventSink::GetSingleton();
-
-	auto* eventSourceHolder = RE::ScriptEventSourceHolder::GetSingleton();
-	eventSourceHolder->AddEventSink<RE::TESDeathEvent>(eventSink);
-
-	const auto messaging = SKSE::GetMessagingInterface();
-	messaging->RegisterListener(MessageHandler);
+	RE::ScriptEventSourceHolder::GetSingleton()->AddEventSink<RE::TESDeathEvent>(EventSink::GetSingleton());
+	SKSE::GetMessagingInterface()->RegisterListener(MessageHandler);
 
 	return true;
 }

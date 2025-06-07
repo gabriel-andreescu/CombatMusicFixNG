@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.27)
 
 project(
         CombatMusicFixNG
-        VERSION 1.1.0
+        VERSION 1.2.0
         LANGUAGES CXX
 )
 
@@ -166,4 +166,3 @@ if( MSVC_VERSION GREATER_EQUAL 1936 AND MSVC_IDE ) # 17.6+
 </Project>
 ]==] @ONLY )
 endif()
-
