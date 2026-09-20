@@ -1,0 +1,8 @@
+{
+  "recommendations": [
+    "tboox.xmake-vscode",
+    "EditorConfig.EditorConfig",
+    "gabriel-andreescu.bbcode-editor",
+    "llvm-vs-code-extensions.vscode-clangd"
+  ]
+}

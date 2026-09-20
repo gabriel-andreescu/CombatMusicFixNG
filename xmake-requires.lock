@@ -1,0 +1,84 @@
+{
+    __meta__ = {
+        version = "1.0"
+    },
+    ["windows|x64"] = {
+        ["bmk#f56260b5"] = {
+            repo = {
+                commit = "5aed0c4df0e6b1a08a4308749138a4a981cfef07",
+                url = "https://github.com/gabriel-andreescu/BethesdaModKit.git"
+            },
+            version = "latest"
+        },
+        ["clib-util 1.5.0#f56260b5"] = {
+            repo = {
+                commit = "5aed0c4df0e6b1a08a4308749138a4a981cfef07",
+                url = "https://github.com/gabriel-andreescu/BethesdaModKit.git"
+            },
+            version = "1.5.0"
+        },
+        ["cmake#f56260b5"] = {
+            repo = {
+                branch = "master",
+                commit = "0c36ce5133b2d03d11c7402ba8bd187d2ad5b6e9",
+                url = "https://github.com/xmake-io/xmake-repo.git"
+            },
+            version = "4.3.4"
+        },
+        ["commonlibsse-ng 8.0.1#f56260b5"] = {
+            repo = {
+                commit = "5aed0c4df0e6b1a08a4308749138a4a981cfef07",
+                url = "https://github.com/gabriel-andreescu/BethesdaModKit.git"
+            },
+            version = "8.0.1"
+        },
+        ["directxmath 2024.02#f56260b5"] = {
+            repo = {
+                branch = "master",
+                commit = "0c36ce5133b2d03d11c7402ba8bd187d2ad5b6e9",
+                url = "https://github.com/xmake-io/xmake-repo.git"
+            },
+            version = "2024.02"
+        },
+        ["directxtk 24.2.0#f56260b5"] = {
+            repo = {
+                branch = "master",
+                commit = "0c36ce5133b2d03d11c7402ba8bd187d2ad5b6e9",
+                url = "https://github.com/xmake-io/xmake-repo.git"
+            },
+            version = "24.2.0"
+        },
+        ["ninja#f56260b5"] = {
+            repo = {
+                branch = "master",
+                commit = "0c36ce5133b2d03d11c7402ba8bd187d2ad5b6e9",
+                url = "https://github.com/xmake-io/xmake-repo.git"
+            },
+            version = "v1.13.2"
+        },
+        ["rapidcsv v8.92#f56260b5"] = {
+            repo = {
+                branch = "master",
+                commit = "0c36ce5133b2d03d11c7402ba8bd187d2ad5b6e9",
+                url = "https://github.com/xmake-io/xmake-repo.git"
+            },
+            version = "v8.92"
+        },
+        ["spdlog v1.16.0#09c8c173"] = {
+            repo = {
+                branch = "master",
+                commit = "0c36ce5133b2d03d11c7402ba8bd187d2ad5b6e9",
+                url = "https://github.com/xmake-io/xmake-repo.git"
+            },
+            version = "v1.16.0"
+        },
+        ["xbyak v7.06#f56260b5"] = {
+            repo = {
+                branch = "master",
+                commit = "0c36ce5133b2d03d11c7402ba8bd187d2ad5b6e9",
+                url = "https://github.com/xmake-io/xmake-repo.git"
+            },
+            version = "v7.06"
+        }
+    }
+}

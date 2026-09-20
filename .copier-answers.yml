@@ -1,0 +1,16 @@
+_commit: v0.2.0
+_src_path: https://github.com/gabriel-andreescu/BethesdaModKit.git
+author: GabonZ
+bmk_repository: https://github.com/gabriel-andreescu/BethesdaModKit.git
+components:
+  - native
+description: Stops lingering combat music.
+devbench_api: false
+devbench_tests: false
+game: skyrim
+mcm: false
+native_settings: true
+native_source: src
+pack_assets: false
+pre_commit: true
+project_name: CombatMusicFixNG

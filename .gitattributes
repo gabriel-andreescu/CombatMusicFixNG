@@ -1,2 +1,16 @@
-# Auto detect text files and perform LF normalization
-* text=auto
+* text=auto eol=lf
+
+*.ba2 binary -eol
+*.bsa binary -eol
+*.dds binary -eol
+*.dll binary -eol
+*.esl binary -eol
+*.esm binary -eol
+*.esp binary -eol
+*.exe binary -eol
+*.hkx binary -eol
+*.nif binary -eol
+*.pdb binary -eol
+*.pex binary -eol
+*.png binary -eol
+*.swf binary -eol

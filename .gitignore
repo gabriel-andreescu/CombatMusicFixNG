@@ -1,4 +1,12 @@
+.xmake/
+.bmk/
 build/
 dist/
-.vs*/
-CMakeUserPresets.json
+.idea/
+scratch/
+compile_commands.json
+.venv/
+.pytest_cache/
+.ruff_cache/
+__pycache__/
+test-results/

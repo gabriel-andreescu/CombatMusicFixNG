@@ -1,0 +1,16 @@
+CompileFlags:
+  CompilationDatabase: .
+  Compiler: clang-cl
+  Remove: [-WX, /WX, '-std:*', '/std:*', '/clang:-std=*', '-Zc:*', '/Zc:*']
+  Add:
+    - --target=x86_64-pc-windows-msvc
+    - /clang:-std=c++23
+    - /Y-
+
+---
+
+If:
+  PathMatch: build/.*
+
+Index:
+  Background: Skip

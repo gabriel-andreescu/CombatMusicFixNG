@@ -1,0 +1,10 @@
+{
+  "xmake.autoGenerateCompileCommands": "disabled",
+  "C_Cpp.intelliSenseEngine": "disabled",
+  "[c]": {
+    "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd"
+  },
+  "[cpp]": {
+    "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd"
+  }
+}
