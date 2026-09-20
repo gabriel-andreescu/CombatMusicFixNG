@@ -1,0 +1,48 @@
+[size=4][color=#00ffff]OVERVIEW[/color][/size]
+Stops combat music that keeps playing after combat has ended or after loading a save.
+
+
+[size=4][color=#00ffff]HOW IT WORKS[/color][/size]
+When a save finishes loading or an actor dies while you're out of combat, Combat Music Fix NG schedules a cleanup five seconds later. If you're still out of combat, it removes the configured combat music types.
+
+The default list covers Skyrim's normal, Civil War, boss, Dawnguard, character generation, Karstaag, and Dragonborn boss combat music.
+
+
+[size=4][color=#00ffff]CONFIGURATION[/color][/size]
+The user INI is created on first launch:
+
+[quote]Data\MCM\Settings\CombatMusicFixNG.ini[/quote]
+
+[b]StopTracks[/b] is a comma-separated list of music type editor IDs. Leave it empty to disable the cleanup commands.
+[b]bOnlyAtSaveLoad[/b] restricts cleanup to loading a save when set to [b]1[/b]. The default, [b]0[/b], also runs cleanup after an actor dies.
+[b]bDebugLogging[/b] enables debug logging.
+
+Changes take effect after restarting the game.
+
+
+[size=4][color=#00ffff]UPDATING TO 2.0.0[/color][/size]
+Settings have moved from [font=Courier New]Data\SKSE\Plugins\CombatMusicFixNG.ini[/font] to the MCM settings folder shown above. If you changed [b]StopTracks[/b], launch the game once to create the new INI, then quit and copy that value over.
+
+If you used the [b]Only At Save Load[/b] download, replace it with the main file and set [b]bOnlyAtSaveLoad=1[/b] in the new INI.
+
+
+[size=4][color=#00ffff]REQUIREMENTS[/color][/size]
+Install [url=https://skse.silverlock.org/]SKSE[/url] for your game version.
+
+SE/AE
+[url=https://www.nexusmods.com/skyrimspecialedition/mods/32444]Address Library for SKSE Plugins[/url]
+
+VR
+[url=https://www.nexusmods.com/skyrimspecialedition/mods/58101]VR Address Library for SKSEVR[/url]
+
+
+[size=4][color=#00ffff]SOURCE[/color][/size]
+[url=https://github.com/gabriel-andreescu/CombatMusicFixNG]github.com/gabriel-andreescu/CombatMusicFixNG[/url]
+
+
+[size=4][color=#00ffff]CREDITS[/color][/size]
+[list]
+[*][url=https://github.com/D7ry/CombatMusicFix]dTry's Combat Music Fix[/url] - original mod and source[/*]
+[*][url=https://github.com/alandtse/CommonLibSSE-NG]CommonLibSSE-NG[/url][/*]
+[*][url=https://github.com/powerof3/CLibUtil]CLibUtil[/url][/*]
+[/list]
