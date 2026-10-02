@@ -40,32 +40,32 @@ CombatMusicFix& CombatMusicFix::GetSingleton() {
 }
 
 CombatMusicFix::CombatMusicFix()
-    : commands_(Settings::Get().commands)
-    , worker_([this](const std::stop_token& a_stop) { Run(a_stop); }) {}
+    : _commands(Settings::Get().commands)
+    , _worker([this](const std::stop_token& a_stop) { Run(a_stop); }) {}
 
 void CombatMusicFix::Schedule() {
     constexpr auto kDelay = std::chrono::seconds(5);
-    if (commands_.empty()) {
+    if (_commands.empty()) {
         return;
     }
     {
-        const std::scoped_lock lock(mutex_);
-        deadlines_.push_back(std::chrono::steady_clock::now() + kDelay);
+        const std::scoped_lock lock(_mutex);
+        _deadlines.push_back(std::chrono::steady_clock::now() + kDelay);
     }
-    changed_.notify_one();
+    _changed.notify_one();
 }
 
 void CombatMusicFix::Run(const std::stop_token& a_stop) {
-    std::unique_lock lock(mutex_);
-    while (changed_.wait(lock, a_stop, [this] { return !deadlines_.empty(); })) {
-        const auto deadline = deadlines_.front();
-        changed_.wait_until(lock, a_stop, deadline, [] { return false; });
+    std::unique_lock lock(_mutex);
+    while (_changed.wait(lock, a_stop, [this] { return !_deadlines.empty(); })) {
+        const auto deadline = _deadlines.front();
+        _changed.wait_until(lock, a_stop, deadline, [] { return false; });
         if (a_stop.stop_requested()) {
             return;
         }
-        deadlines_.pop_front();
+        _deadlines.pop_front();
         lock.unlock();
-        SKSE::GetTaskInterface()->AddTask([commands = commands_] { StopTracks(commands); });
+        SKSE::GetTaskInterface()->AddTask([commands = _commands] { StopTracks(commands); });
         lock.lock();
     }
 }

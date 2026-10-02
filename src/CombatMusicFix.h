@@ -18,9 +18,9 @@ private:
     CombatMusicFix();
     void Run(const std::stop_token& a_stop);
 
-    const std::vector<std::string> commands_;
-    std::mutex mutex_;
-    std::condition_variable_any changed_;
-    std::deque<std::chrono::steady_clock::time_point> deadlines_;
-    std::jthread worker_;
+    const std::vector<std::string> _commands;
+    std::mutex _mutex;
+    std::condition_variable_any _changed;
+    std::deque<std::chrono::steady_clock::time_point> _deadlines;
+    std::jthread _worker;
 };
