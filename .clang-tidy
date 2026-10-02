@@ -59,6 +59,8 @@ FormatStyle: none
 
 CheckOptions:
   - { key: bugprone-easily-swappable-parameters.MinimumLength, value: 3 }
+  - { key: cppcoreguidelines-avoid-non-const-global-variables.AllowInternalLinkage, value: true }
+  - { key: misc-non-private-member-variables-in-classes.IgnoreClassesWithAllMemberVariablesBeingPublic, value: true }
   - { key: readability-function-size.LineThreshold, value: 80 }
   - { key: readability-function-size.NestingThreshold, value: 4 }
   - { key: readability-function-size.ParameterThreshold, value: 6 }
@@ -66,7 +68,8 @@ CheckOptions:
   - { key: readability-identifier-naming.ConstexprVariableCase, value: CamelCase }
   - { key: readability-identifier-naming.ConstexprVariablePrefix, value: k }
   - { key: readability-identifier-naming.EnumCase, value: CamelCase }
-  - { key: readability-identifier-naming.EnumConstantCase, value: camelBack }
+  - { key: readability-identifier-naming.EnumConstantCase, value: CamelCase }
+  - { key: readability-identifier-naming.EnumConstantPrefix, value: k }
   - { key: readability-identifier-naming.FunctionCase, value: CamelCase }
   - { key: readability-identifier-naming.GlobalConstantCase, value: CamelCase }
   - { key: readability-identifier-naming.GlobalConstantPrefix, value: k }
@@ -75,6 +78,11 @@ CheckOptions:
   - { key: readability-identifier-naming.NamespaceCase, value: CamelCase }
   - { key: readability-identifier-naming.ParameterCase, value: camelBack }
   - { key: readability-identifier-naming.ParameterPrefix, value: a_ }
+  - { key: readability-identifier-naming.PrivateMemberCase, value: camelBack }
+  - { key: readability-identifier-naming.PrivateMemberPrefix, value: _ }
+  - { key: readability-identifier-naming.ProtectedMemberCase, value: camelBack }
+  - { key: readability-identifier-naming.ProtectedMemberPrefix, value: _ }
   - { key: readability-identifier-naming.StructCase, value: CamelCase }
   - { key: readability-identifier-naming.TypeAliasCase, value: CamelCase }
   - { key: readability-identifier-naming.TypeAliasIgnoredRegexp, value: '^is_transparent$' }
+  - { key: readability-implicit-bool-conversion.AllowPointerConditions, value: true }

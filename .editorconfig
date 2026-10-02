@@ -10,9 +10,9 @@ trim_trailing_whitespace = true
 indent_style = space
 indent_size = 4
 
-[*.{json,jsonc,json.example,yaml,yml,xml,csproj,props,targets,slnx}]
+[*.{json,jsonc,yaml,yml,xml,csproj,props,targets,slnx}]
 indent_style = space
 indent_size = 2
 
-[*.{md,md.jinja}]
+[*.md]
 trim_trailing_whitespace = false

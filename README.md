@@ -1,14 +1,29 @@
 # CombatMusicFixNG
 
+Stops lingering combat music.
+
 This project uses
-[BethesdaModKit](https://github.com/gabriel-andreescu/BethesdaModKit) for
-project generation and development tooling. Follow BMK's
-[project build instructions](https://github.com/gabriel-andreescu/BethesdaModKit/blob/main/docs/mod-authors/template/projects.md#build-a-generated-project),
-[deployment and packaging guide](https://github.com/gabriel-andreescu/BethesdaModKit/blob/main/docs/mod-authors/tooling/packaging.md),
-[formatting setup](https://github.com/gabriel-andreescu/BethesdaModKit/blob/main/docs/mod-authors/template/defaults.md#formatting),
-[Clang tooling](https://github.com/gabriel-andreescu/BethesdaModKit/blob/main/docs/mod-authors/tooling/clang.md),
-and the
-[native settings guide](https://github.com/gabriel-andreescu/BethesdaModKit/blob/main/docs/mod-authors/template/settings.md).
+[BethesdaModKit (BMK)](https://github.com/gabriel-andreescu/BethesdaModKit) for
+project generation and development tooling.
+
+## Development
+
+```powershell
+xmake
+xmake package
+```
+
+- [Build instructions](https://github.com/gabriel-andreescu/BethesdaModKit/blob/main/docs/mod-authors/template/projects.md#build-a-generated-project)
+- [Deployment and packaging](https://github.com/gabriel-andreescu/BethesdaModKit/blob/main/docs/mod-authors/tooling/packaging.md)
+- [Formatting setup](https://github.com/gabriel-andreescu/BethesdaModKit/blob/main/docs/mod-authors/template/defaults.md#formatting)
+- [Clang tooling](https://github.com/gabriel-andreescu/BethesdaModKit/blob/main/docs/mod-authors/tooling/clang.md)
+- [Settings and MCM](https://github.com/gabriel-andreescu/BethesdaModKit/blob/main/docs/mod-authors/template/settings.md)
+
+## CI
+
+See
+[workflow setup](https://github.com/gabriel-andreescu/BethesdaModKit/blob/main/docs/mod-authors/tooling/github-actions.md)
+for build inputs and releases.
 
 ## Credits
 
